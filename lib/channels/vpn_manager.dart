@@ -20,7 +20,13 @@ class VpnManager {
     const platform = MethodChannel("com.sail_tunnel.sail/vpn_manager");
     int result;
     try {
-      result = await platform.invokeMethod("getStatus");
+      if(await platform.invokeMethod("getStatus") == true){
+        result = 1;
+      }
+      else{
+        result = 0;
+      }
+
     } on PlatformException catch (e) {
       print(e.toString());
 
